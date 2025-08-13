@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header container">
+      <div class="header-content">
+        <div class="title-section">
+          <h1>My Resume</h1>
+          <p class="muted">Amin Rahimi - Computer Engineer</p>
+        </div>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="container grid">
+      <!-- Personal Info -->
+      <section id="personal" class="card">
+        <h2 class="section-title">Personal Information</h2>
+        <div class="personal">
+          <img
+            id="avatar"
+            class="avatar"
+            src="images/avatar-placeholder.png"
+            alt="Profile Photo"
+          />
+          <div class="personal-texts">
+            <h3 id="fullName">—</h3>
+            <p id="title" class="muted">—</p>
+            <p id="summary">—</p>
+            <div id="contacts" class="contacts"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="card">
+        <h2 class="section-title">Skills</h2>
+        <div id="skillsList" class="skills"></div>
+      </section>
+
+      <!-- Education -->
+      <section id="education" class="card">
+        <h2 class="section-title">Education</h2>
+        <div id="educationList" class="timeline"></div>
+      </section>
+
+      <!-- Experience / Projects -->
+      <section id="experience" class="card">
+        <h2 class="section-title">Experience / Projects</h2>
+        <div id="experienceList" class="timeline"></div>
+      </section>
+
+      <!-- Achievements -->
+      <section id="achievements" class="card">
+        <h2 class="section-title">Achievements</h2>
+        <div id="achievementsList" class="cards"></div>
+      </section>
+
+      <!-- Certificates (optional) -->
+      <section id="certificates" class="card" hidden>
+        <h2 class="section-title">Certificates</h2>
+        <div id="certificatesList" class="cards"></div>
+      </section>
+
+      <!-- Interests (optional) -->
+      <section id="interests" class="card" hidden>
+        <h2 class="section-title">Interests</h2>
+        <ul id="interestsList" class="chips"></ul>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <small class="muted">Built with HTML, CSS, JavaScript — UTF-8</small>
+    </footer>
+
+    <script src="js/app.js" defer></script>
+  </body>
+</html>

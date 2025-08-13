@@ -1,0 +1,122 @@
+{
+  "personal": {
+    "fullName": "Amin Rahimi",
+    "title": "Computer Engineer at Bu-Ali Sina University",
+    "summary": "Computer engineer focused on building modern, performant, and accessible UIs with HTML, CSS, and JavaScript.",
+    "avatar": "https://github.com/aminrm4.png",
+    "contacts": [
+      {
+        "label": "Email",
+        "value": "aminmerh284@gmail.com",
+        "href": "mailto:aminmerh284@gmail.com"
+      },
+      {
+        "label": "Phone",
+        "value": "+98-992-543-0780",
+        "href": "tel:+989925430780"
+      },
+      {
+        "label": "GitHub",
+        "value": "github.com/aminrm4",
+        "href": "https://github.com/aminrm4"
+      },
+      {
+        "label": "Quera",
+        "value": "quera.org/profile/Aminrahimi",
+        "href": "https://quera.org/profile/Aminrahimi"
+      }
+    ]
+  },
+  "skills": [
+    {
+      "id": 1,
+      "name": "HTML",
+      "level": 90
+    },
+    {
+      "id": 2,
+      "name": "CSS",
+      "level": 10
+    },
+    {
+      "id": 3,
+      "name": "JavaScript",
+      "level": 20
+    },
+    {
+      "id": 4,
+      "name": "Git",
+      "level": 70
+    },
+    {
+      "id": 5,
+      "name": "OOP",
+      "level": 85
+    },
+    {
+      "id": 6,
+      "name": "C++",
+      "level": 85
+    },
+    {
+      "id": 7,
+      "name": "english",
+      "level": 90
+    },
+    {
+      "id": 8,
+      "name": "german",
+      "level": 95
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "Bu-Ali Sina University",
+      "degree": "B.Sc. in Computer Engineering",
+      "start": "2020",
+      "end": "2024",
+      "description": "Software engineering track; active in the student association and hands-on projects."
+    }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "company": "APA Center",
+      "role": "Frontend Intern",
+      "start": "Summer 2025",
+      "end": "Present",
+      "description": "Implemented a resume builder powered by JSON data and designed a responsive UI."
+    },
+    {
+      "id": 2,
+      "project": "Horrified OOP Project",
+      "role": "Developer",
+      "start": "2024",
+      "end": "2024",
+      "description": "Developed a complete Object-Oriented Programming project using modern software engineering principles and design patterns."
+    },
+    {
+      "id": 3,
+      "project": "Personal Website",
+      "role": "Designer & Developer",
+      "start": "2023",
+      "end": "2024",
+      "description": "Designed and built a personal website focused on speed and accessibility."
+    }
+  ],
+  "achievements": [
+    {
+      "id": 1,
+      "title": "Quera Competition",
+      "description": "Ranked #283 in competitive programming competition",
+      "date": "2024",
+      "link": "https://quera.org/profile/Aminrahimi"
+    }
+  ],
+  "interests": [
+    "Information Security",
+    "User Interface Design",
+    "Competitive Programming"
+  ]
+}

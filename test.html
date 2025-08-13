@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume API Tester</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .api-section {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .api-section h2 {
+        color: #333;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #667eea;
+        padding-bottom: 10px;
+      }
+
+      .endpoint {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+
+      .endpoint h3 {
+        color: #495057;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .method {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .get {
+        background: #28a745;
+        color: white;
+      }
+      .post {
+        background: #007bff;
+        color: white;
+      }
+      .put {
+        background: #ffc107;
+        color: black;
+      }
+      .patch {
+        background: #fd7e14;
+        color: white;
+      }
+      .delete {
+        background: #dc3545;
+        color: white;
+      }
+
+      .url {
+        font-family: monospace;
+        background: #e9ecef;
+        padding: 5px 10px;
+        border-radius: 3px;
+        color: #495057;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #495057;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      button {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: #5a6fd8;
+      }
+
+      .response {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 15px;
+        font-family: monospace;
+        white-space: pre-wrap;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .success {
+        border-color: #28a745;
+        background: #d4edda;
+      }
+      .error {
+        border-color: #dc3545;
+        background: #f8d7da;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .status {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+
+      .status.success {
+        background: #28a745;
+        color: white;
+      }
+      .status.error {
+        background: #dc3545;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 Resume API Tester</h1>
+
+      <div class="grid">
+        <!-- Personal Info Section -->
+        <div class="api-section">
+          <h2>👤 Personal Information</h2>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method get">GET</span>
+              <span class="url">/api/personal</span>
+            </h3>
+            <button onclick="getPersonal()">Get Personal Info</button>
+            <div
+              id="personal-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method put">PUT</span>
+              <span class="url">/api/personal</span>
+            </h3>
+            <div class="form-group">
+              <label>Full Name:</label>
+              <input type="text" id="personal-name" value="Amin Rahimi" />
+            </div>
+            <div class="form-group">
+              <label>Title:</label>
+              <input
+                type="text"
+                id="personal-title"
+                value="Computer Engineer at Bu-Ali Sina University"
+              />
+            </div>
+            <div class="form-group">
+              <label>Summary:</label>
+              <textarea id="personal-summary">
+Computer engineer focused on building modern, performant, and accessible UIs with HTML, CSS, and JavaScript.</textarea
+              >
+            </div>
+            <button onclick="updatePersonal()">Update Personal Info</button>
+            <div
+              id="personal-update-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="api-section">
+          <h2>🛠️ Skills Management</h2>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method get">GET</span>
+              <span class="url">/api/skills</span>
+            </h3>
+            <button onclick="getSkills()">Get All Skills</button>
+            <div
+              id="skills-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method post">POST</span>
+              <span class="url">/api/skills</span>
+            </h3>
+            <div class="form-group">
+              <label>Skill Name:</label>
+              <input
+                type="text"
+                id="new-skill-name"
+                placeholder="e.g., Python"
+              />
+            </div>
+            <div class="form-group">
+              <label>Skill Level (0-100):</label>
+              <input
+                type="number"
+                id="new-skill-level"
+                min="0"
+                max="100"
+                value="80"
+              />
+            </div>
+            <button onclick="addSkill()">Add New Skill</button>
+            <div
+              id="add-skill-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method put">PUT</span>
+              <span class="url">/api/skills/:id</span>
+            </h3>
+            <div class="form-group">
+              <label>Skill ID:</label>
+              <input type="number" id="update-skill-id" min="1" value="1" />
+            </div>
+            <div class="form-group">
+              <label>New Level:</label>
+              <input
+                type="number"
+                id="update-skill-level"
+                min="0"
+                max="100"
+                value="95"
+              />
+            </div>
+            <button onclick="updateSkill()">Update Skill Level</button>
+            <div
+              id="update-skill-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method delete">DELETE</span>
+              <span class="url">/api/skills/:id</span>
+            </h3>
+            <div class="form-group">
+              <label>Skill ID to Delete:</label>
+              <input type="number" id="delete-skill-id" min="1" value="1" />
+            </div>
+            <button onclick="deleteSkill()">Delete Skill</button>
+            <div
+              id="delete-skill-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="api-section">
+          <h2>🎓 Education Management</h2>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method get">GET</span>
+              <span class="url">/api/education</span>
+            </h3>
+            <button onclick="getEducation()">Get Education</button>
+            <div
+              id="education-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method post">POST</span>
+              <span class="url">/api/education</span>
+            </h3>
+            <div class="form-group">
+              <label>Institution:</label>
+              <input
+                type="text"
+                id="new-edu-institution"
+                placeholder="University Name"
+              />
+            </div>
+            <div class="form-group">
+              <label>Degree:</label>
+              <input
+                type="text"
+                id="new-edu-degree"
+                placeholder="Degree Name"
+              />
+            </div>
+            <div class="form-group">
+              <label>Start Year:</label>
+              <input type="text" id="new-edu-start" placeholder="2020" />
+            </div>
+            <div class="form-group">
+              <label>End Year:</label>
+              <input type="text" id="new-edu-end" placeholder="2024" />
+            </div>
+            <div class="form-group">
+              <label>Description:</label>
+              <textarea
+                id="new-edu-description"
+                placeholder="Description of your education"
+              ></textarea>
+            </div>
+            <button onclick="addEducation()">Add Education</button>
+            <div
+              id="add-edu-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="api-section">
+          <h2>💼 Experience Management</h2>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method get">GET</span>
+              <span class="url">/api/experience</span>
+            </h3>
+            <button onclick="getExperience()">Get Experience</button>
+            <div
+              id="experience-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method post">POST</span>
+              <span class="url">/api/experience</span>
+            </h3>
+            <div class="form-group">
+              <label>Company/Project:</label>
+              <input
+                type="text"
+                id="new-exp-company"
+                placeholder="Company or Project Name"
+              />
+            </div>
+            <div class="form-group">
+              <label>Role:</label>
+              <input type="text" id="new-exp-role" placeholder="Your Role" />
+            </div>
+            <div class="form-group">
+              <label>Start Date:</label>
+              <input type="text" id="new-exp-start" placeholder="Start Date" />
+            </div>
+            <div class="form-group">
+              <label>End Date:</label>
+              <input
+                type="text"
+                id="new-exp-end"
+                placeholder="End Date or Present"
+              />
+            </div>
+            <div class="form-group">
+              <label>Description:</label>
+              <textarea
+                id="new-exp-description"
+                placeholder="Description of your work"
+              ></textarea>
+            </div>
+            <button onclick="addExperience()">Add Experience</button>
+            <div
+              id="add-exp-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="api-section">
+          <h2>🏆 Achievements Management</h2>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method get">GET</span>
+              <span class="url">/api/achievements</span>
+            </h3>
+            <button onclick="getAchievements()">Get Achievements</button>
+            <div
+              id="achievements-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method post">POST</span>
+              <span class="url">/api/achievements</span>
+            </h3>
+            <div class="form-group">
+              <label>Title:</label>
+              <input
+                type="text"
+                id="new-achievement-title"
+                placeholder="Achievement Title"
+              />
+            </div>
+            <div class="form-group">
+              <label>Description:</label>
+              <textarea
+                id="new-achievement-description"
+                placeholder="Description of achievement"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label>Date:</label>
+              <input type="text" id="new-achievement-date" placeholder="2024" />
+            </div>
+            <div class="form-group">
+              <label>Link (optional):</label>
+              <input
+                type="url"
+                id="new-achievement-link"
+                placeholder="https://example.com"
+              />
+            </div>
+            <button onclick="addAchievement()">Add Achievement</button>
+            <div
+              id="add-achievement-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Interests Section -->
+        <div class="api-section">
+          <h2>🎯 Interests Management</h2>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method get">GET</span>
+              <span class="url">/api/interests</span>
+            </h3>
+            <button onclick="getInterests()">Get Interests</button>
+            <div
+              id="interests-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method post">POST</span>
+              <span class="url">/api/interests</span>
+            </h3>
+            <div class="form-group">
+              <label>Interest Name:</label>
+              <input
+                type="text"
+                id="new-interest-name"
+                placeholder="e.g., Machine Learning"
+              />
+            </div>
+            <button onclick="addInterest()">Add Interest</button>
+            <div
+              id="add-interest-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Database Section -->
+        <div class="api-section">
+          <h2>🗄️ Database Operations</h2>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method get">GET</span>
+              <span class="url">/api/db</span>
+            </h3>
+            <button onclick="getAllData()">Get All Data</button>
+            <div
+              id="all-data-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="endpoint">
+            <h3>
+              <span class="method get">GET</span>
+              <span class="url">/api/health</span>
+            </h3>
+            <button onclick="checkHealth()">Check API Health</button>
+            <div
+              id="health-response"
+              class="response"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const API_BASE = "http://localhost:5000/api";
+
+      // Utility function to show response
+      function showResponse(elementId, data, isSuccess = true) {
+        const element = document.getElementById(elementId);
+        element.style.display = "block";
+        element.className = `response ${isSuccess ? "success" : "error"}`;
+        element.textContent = JSON.stringify(data, null, 2);
+      }
+
+      // Personal Info Functions
+      async function getPersonal() {
+        try {
+          const response = await fetch(`${API_BASE}/personal`);
+          const data = await response.json();
+          showResponse("personal-response", data, response.ok);
+        } catch (error) {
+          showResponse("personal-response", { error: error.message }, false);
+        }
+      }
+
+      async function updatePersonal() {
+        try {
+          const personalData = {
+            fullName: document.getElementById("personal-name").value,
+            title: document.getElementById("personal-title").value,
+            summary: document.getElementById("personal-summary").value,
+            avatar: "https://github.com/aminrm4.png",
+            contacts: [
+              {
+                label: "Email",
+                value: "aminmerh284@gmail.com",
+                href: "mailto:aminmerh284@gmail.com",
+              },
+              {
+                label: "Phone",
+                value: "+98-992-543-0780",
+                href: "tel:+989925430780",
+              },
+              {
+                label: "GitHub",
+                value: "github.com/aminrm4",
+                href: "https://github.com/aminrm4",
+              },
+              {
+                label: "Quera",
+                value: "quera.org/profile/Aminrahimi",
+                href: "https://quera.org/profile/Aminrahimi",
+              },
+            ],
+          };
+
+          const response = await fetch(`${API_BASE}/personal`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(personalData),
+          });
+
+          const data = await response.json();
+          showResponse("personal-update-response", data, response.ok);
+        } catch (error) {
+          showResponse(
+            "personal-update-response",
+            { error: error.message },
+            false
+          );
+        }
+      }
+
+      // Skills Functions
+      async function getSkills() {
+        try {
+          const response = await fetch(`${API_BASE}/skills`);
+          const data = await response.json();
+          showResponse("skills-response", data, response.ok);
+        } catch (error) {
+          showResponse("skills-response", { error: error.message }, false);
+        }
+      }
+
+      async function addSkill() {
+        try {
+          const skillData = {
+            name: document.getElementById("new-skill-name").value,
+            level: parseInt(document.getElementById("new-skill-level").value),
+          };
+
+          const response = await fetch(`${API_BASE}/skills`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(skillData),
+          });
+
+          const data = await response.json();
+          showResponse("add-skill-response", data, response.ok);
+        } catch (error) {
+          showResponse("add-skill-response", { error: error.message }, false);
+        }
+      }
+
+      async function updateSkill() {
+        try {
+          const skillId = document.getElementById("update-skill-id").value;
+          const newLevel = parseInt(
+            document.getElementById("update-skill-level").value
+          );
+
+          const response = await fetch(`${API_BASE}/skills/${skillId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ level: newLevel }),
+          });
+
+          const data = await response.json();
+          showResponse("update-skill-response", data, response.ok);
+        } catch (error) {
+          showResponse(
+            "update-skill-response",
+            { error: error.message },
+            false
+          );
+        }
+      }
+
+      async function deleteSkill() {
+        try {
+          const skillId = document.getElementById("delete-skill-id").value;
+
+          const response = await fetch(`${API_BASE}/skills/${skillId}`, {
+            method: "DELETE",
+          });
+
+          const data = await response.json();
+          showResponse("delete-skill-response", data, response.ok);
+        } catch (error) {
+          showResponse(
+            "delete-skill-response",
+            { error: error.message },
+            false
+          );
+        }
+      }
+
+      // Education Functions
+      async function getEducation() {
+        try {
+          const response = await fetch(`${API_BASE}/education`);
+          const data = await response.json();
+          showResponse("education-response", data, response.ok);
+        } catch (error) {
+          showResponse("education-response", { error: error.message }, false);
+        }
+      }
+
+      async function addEducation() {
+        try {
+          const eduData = {
+            institution: document.getElementById("new-edu-institution").value,
+            degree: document.getElementById("new-edu-degree").value,
+            start: document.getElementById("new-edu-start").value,
+            end: document.getElementById("new-edu-end").value,
+            description: document.getElementById("new-edu-description").value,
+          };
+
+          const response = await fetch(`${API_BASE}/education`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(eduData),
+          });
+
+          const data = await response.json();
+          showResponse("add-edu-response", data, response.ok);
+        } catch (error) {
+          showResponse("add-edu-response", { error: error.message }, false);
+        }
+      }
+
+      // Experience Functions
+      async function getExperience() {
+        try {
+          const response = await fetch(`${API_BASE}/experience`);
+          const data = await response.json();
+          showResponse("experience-response", data, response.ok);
+        } catch (error) {
+          showResponse("experience-response", { error: error.message }, false);
+        }
+      }
+
+      async function addExperience() {
+        try {
+          const expData = {
+            company: document.getElementById("new-exp-company").value,
+            role: document.getElementById("new-exp-role").value,
+            start: document.getElementById("new-exp-start").value,
+            end: document.getElementById("new-exp-end").value,
+            description: document.getElementById("new-exp-description").value,
+          };
+
+          const response = await fetch(`${API_BASE}/experience`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(expData),
+          });
+
+          const data = await response.json();
+          showResponse("add-exp-response", data, response.ok);
+        } catch (error) {
+          showResponse("add-exp-response", { error: error.message }, false);
+        }
+      }
+
+      // Achievements Functions
+      async function getAchievements() {
+        try {
+          const response = await fetch(`${API_BASE}/achievements`);
+          const data = await response.json();
+          showResponse("achievements-response", data, response.ok);
+        } catch (error) {
+          showResponse(
+            "achievements-response",
+            { error: error.message },
+            false
+          );
+        }
+      }
+
+      async function addAchievement() {
+        try {
+          const achievementData = {
+            title: document.getElementById("new-achievement-title").value,
+            description: document.getElementById("new-achievement-description")
+              .value,
+            date: document.getElementById("new-achievement-date").value,
+            link: document.getElementById("new-achievement-link").value || null,
+          };
+
+          const response = await fetch(`${API_BASE}/achievements`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(achievementData),
+          });
+
+          const data = await response.json();
+          showResponse("add-achievement-response", data, response.ok);
+        } catch (error) {
+          showResponse(
+            "add-achievement-response",
+            { error: error.message },
+            false
+          );
+        }
+      }
+
+      // Interests Functions
+      async function getInterests() {
+        try {
+          const response = await fetch(`${API_BASE}/interests`);
+          const data = await response.json();
+          showResponse("interests-response", data, response.ok);
+        } catch (error) {
+          showResponse("interests-response", { error: error.message }, false);
+        }
+      }
+
+      async function addInterest() {
+        try {
+          const interestData = {
+            name: document.getElementById("new-interest-name").value,
+          };
+
+          const response = await fetch(`${API_BASE}/interests`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(interestData),
+          });
+
+          const data = await response.json();
+          showResponse("add-interest-response", data, response.ok);
+        } catch (error) {
+          showResponse(
+            "add-interest-response",
+            { error: error.message },
+            false
+          );
+        }
+      }
+
+      // Database Functions
+      async function getAllData() {
+        try {
+          const response = await fetch(`${API_BASE}/db`);
+          const data = await response.json();
+          showResponse("all-data-response", data, response.ok);
+        } catch (error) {
+          showResponse("all-data-response", { error: error.message }, false);
+        }
+      }
+
+      async function checkHealth() {
+        try {
+          const response = await fetch(`${API_BASE}/health`);
+          const data = await response.json();
+          showResponse("health-response", data, response.ok);
+        } catch (error) {
+          showResponse("health-response", { error: error.message }, false);
+        }
+      }
+
+      // Check if API is running on page load
+      window.addEventListener("load", async () => {
+        try {
+          const response = await fetch(`${API_BASE}/health`);
+          if (response.ok) {
+            console.log("✅ API is running!");
+          }
+        } catch (error) {
+          console.log(
+            "❌ API is not running. Please start the Flask server first."
+          );
+          alert(
+            "⚠️ Flask API is not running!\n\nPlease run: python3 app.py\n\nThen refresh this page."
+          );
+        }
+      });
+    </script>
+  </body>
+</html>
